@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-streamlit
-pandas
-numpy
-scikit-learn
-matplotlib
-=======
-streamlit
-pandas
-numpy
-scikit-learn
-matplotlib
->>>>>>> 49d24f3e63e39e59bcfd4488588d62d515afa938
+pandas==2.3.3
+numpy==2.4.2
+scikit-learn==1.8.0
+matplotlib==3.10.8
+streamlit==1.54.0
