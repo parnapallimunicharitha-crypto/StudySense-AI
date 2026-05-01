@@ -1,7 +1,3 @@
-# ======================================================
-# 📚 StudySense AI – FINAL VERSION
-# ======================================================
-
 import streamlit as st
 import sqlite3
 import pandas as pd
@@ -10,10 +6,6 @@ import time
 from datetime import date, datetime
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
-
-# ======================================================
-# DATABASE
-# ======================================================
 
 def get_connection():
     return sqlite3.connect("study.db", check_same_thread=False)
@@ -41,17 +33,8 @@ def view_all():
 def clear_all_data():
     cur.execute("DELETE FROM study")
     conn.commit()
-
-# ======================================================
-# PAGE CONFIG
-# ======================================================
-
 st.set_page_config(page_title="StudySense AI", layout="wide")
 st.title("📚 StudySense AI Dashboard")
-
-# ======================================================
-# LIGHT THEME + BOLD FONT
-# ======================================================
 
 st.markdown("""
 <style>
@@ -85,18 +68,11 @@ h1,h2,h3,h4,label,span,p {
 </style>
 """, unsafe_allow_html=True)
 
-# ======================================================
-# SIDEBAR
-# ======================================================
-
 mode = st.sidebar.selectbox(
     "📂 Navigate",
     ["Add Study", "Dashboard", "Focus Timer"]
 )
 
-# ======================================================
-# ➕ ADD STUDY
-# ======================================================
 
 if mode == "Add Study":
 
@@ -113,9 +89,6 @@ if mode == "Add Study":
         st.balloons()
         st.success("Saved successfully 🎉")
 
-# ======================================================
-# 📊 DASHBOARD
-# ======================================================
 
 elif mode == "Dashboard":
 
@@ -152,9 +125,6 @@ elif mode == "Dashboard":
         today = date.today()
         TARGET = 5
 
-        # ==================================================
-        # SUBJECT FILTER
-        # ==================================================
 
         st.subheader("🔍 Subject Filter")
 
@@ -180,9 +150,6 @@ elif mode == "Dashboard":
             st.success("Goal Achieved ⭐")
             st.balloons()
 
-        # ==================================================
-        # WEEKLY STATS
-        # ==================================================
 
         st.subheader("📅 Weekly Stats")
 
@@ -192,9 +159,6 @@ elif mode == "Dashboard":
         c1.metric("Last 7 Days", f"{last7['Hours'].sum()} hrs")
         c2.metric("Total Hours", f"{df['Hours'].sum()} hrs")
 
-        # ==================================================
-        # SUBJECT CHART (COLORFUL)
-        # ==================================================
 
         st.subheader("📊 Subject Wise Study")
 
@@ -239,10 +203,7 @@ elif mode == "Dashboard":
 
         st.success(f"{streak} days 🔥")
 
-        # ==================================================
-        # BADGES
-        # ==================================================
-
+       
         st.subheader("🏆 Badges")
 
         badges = []
@@ -278,9 +239,7 @@ elif mode == "Dashboard":
 
             st.info(f"📈 Predicted: {round(pred,2)} hrs tomorrow")
 
-        # ==================================================
-        # MOTIVATION
-        # ==================================================
+
 
         quotes = [
             "Tiny steps build mountains.",
@@ -305,16 +264,10 @@ elif mode == "Dashboard":
             "text/csv"
         )
 
-        # ==================================================
-        # HISTORY
-        # ==================================================
+      
 
         st.subheader("📋 History")
         st.dataframe(df)
-
-# ======================================================
-# ⏰ FOCUS TIMER
-# ======================================================
 
 elif mode == "Focus Timer":
 
